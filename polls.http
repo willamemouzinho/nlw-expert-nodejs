@@ -1,0 +1,11 @@
+@hostname = http://localhost:3333
+
+POST {{hostname}}/polls HTTP/1.1
+content-type: application/json
+
+{
+    "title": "teste 2"
+}
+
+###
+GET  {{hostname}}/polls
