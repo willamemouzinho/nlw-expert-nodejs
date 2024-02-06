@@ -1,11 +1,22 @@
 @hostname = http://localhost:3333
+@pullId = f85046fb-8b7f-4c99-8e8e-2274abfbf2e0
+@optionId = "c0f5526b-4cf9-4b12-a1ab-1246cb0bf26c"
 
 POST {{hostname}}/polls HTTP/1.1
 content-type: application/json
 
 {
-    "title": "teste 2"
+    "title": "Qual o melhor framework Node.js?",
+    "options": ["Fastify", "Express", "NestJS", "HapiJS"]
 }
 
 ###
-GET  {{hostname}}/polls
+GET  {{hostname}}/polls/{{pullId}} HTTP/1.1
+
+###
+POST {{hostname}}/polls/{{pullId}}/votes HTTP/1.1
+content-type: application/json
+
+{
+    "pollOptionId": {{optionId}}
+}
