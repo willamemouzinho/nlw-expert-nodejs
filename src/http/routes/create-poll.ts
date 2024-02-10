@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
-import { prisma } from '../lib/prisma'
+import { prisma } from '../../lib/prisma'
 import { z } from 'zod'
 
 export async function createPoll(server: FastifyInstance) {
@@ -28,7 +28,7 @@ export async function createPoll(server: FastifyInstance) {
 
         return response.code(201).send({ pollId: poll.id })
       } catch (error) {
-        return response.code(500).send({ message: 'Internal server error' })
+        return response.code(500).send({ message: 'Internal server error.' })
       }
     }
   )

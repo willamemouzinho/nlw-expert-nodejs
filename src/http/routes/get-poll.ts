@@ -1,8 +1,8 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-import { prisma } from '../lib/prisma'
-import { redis } from '../lib/redis'
+import { prisma } from '../../lib/prisma'
+import { redis } from '../../lib/redis'
 
 export async function getPoll(server: FastifyInstance) {
   server.get(
@@ -28,7 +28,8 @@ export async function getPoll(server: FastifyInstance) {
           },
         })
 
-        if (!poll) return response.code(400).send({ message: 'Poll not found' })
+        if (!poll)
+          return response.code(400).send({ message: 'Poll not found.' })
 
         const result = await redis.zrange(pollId, 0, -1, 'WITHSCORES')
         const votes = result.reduce((obj, line, index) => {
@@ -39,8 +40,6 @@ export async function getPoll(server: FastifyInstance) {
 
           return obj
         }, {} as Record<string, number>)
-
-        console.log(votes)
 
         return response.code(200).send({
           poll: {
@@ -54,7 +53,7 @@ export async function getPoll(server: FastifyInstance) {
           },
         })
       } catch (error) {
-        return response.code(500).send({ message: 'Internal server error' })
+        return response.code(500).send({ message: 'Internal server error.' })
       }
     }
   )
