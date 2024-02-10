@@ -1,5 +1,3 @@
-# Polls
-
 This project, developed during the [Rocketseat](https://www.rocketseat.com.br/) Next Level Week event, Expert edition, enables the creation of polls and facilitates voting on them. The polls are stored in a PostgreSQL database, with the application utilizing the Prisma ORM for this purpose. Additionally, the API incorporates a Websocket connection, through which updates on individual poll votes are broadcasted each time a user casts their vote. Redis is employed to manage the rankings of the poll votes.
 
 # Getting Started
